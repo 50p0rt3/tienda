@@ -1,0 +1,63 @@
+<!-- V21 - Formularios -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Two</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand ml-3" href="#">
+            <img src="{% static 'images/django.png' %}" width="80" class="d-inline-block align-top" alt="" loading="lazy">
+            Powered by <strong>Python 3</strong>
+        </a>
+    </nav>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-sm-3 bg-info"></div>
+            <div class="col-sm-6">
+                <h4 class="text-center">Resultado de la Busqueda</h4>
+            </div>
+            <div class="col-sm-3 bg-info"></div>
+        </div>
+        <h5 class="text-center mt-5">Resultados al buscar: <strong>{{ query }}</strong></h4>
+        <h5 class="text-center mt-2"><span>Articulos encontrados: {{ articulos|length }}</span></h5>
+        <table class="table mt-3">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Section</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            {% if articulos  %}
+                {% for articulo in articulos %}
+                <tbody>
+                <tr>
+                    <th scope="row">{{ articulo.id }}</th>
+                    <td>{{ articulo.name }}</td>
+                    <td>{{ articulo.section }}</td>
+                    <td>${{ articulo.price }}</td>
+                </tr>
+                </tbody>
+                {% endfor %}
+            {% else %}
+            <div class="alert alert-danger" role="alert">
+                Ningun nombre coincide con la busqueda! =(
+            </div>
+            {% endif %}
+          </table>
+    </div>
+
+    
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>           
+</body>
+</html>
+
